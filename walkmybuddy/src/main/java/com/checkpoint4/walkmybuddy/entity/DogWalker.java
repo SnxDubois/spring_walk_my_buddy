@@ -28,8 +28,6 @@ public class DogWalker implements Serializable{
     @Size(min = 8)
     private String password;
 
-    boolean validated;
-
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -73,14 +71,6 @@ public class DogWalker implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isValidated() {
-        return validated;
-    }
-
-    public void setValidated(boolean validated) {
-        this.validated = validated;
     }
 
     public Set<Dog> getDogs() {
