@@ -23,8 +23,6 @@ public class DogController {
     public Dog registerDog(@PathVariable Long dogOwnerId, @RequestBody Dog dog) {
         DogOwner dogOwner = dogOwnerRepository.findById(dogOwnerId).get();
         dog.setDogOwner(dogOwner);
-        dogOwner.getDogsOwned().add(dog);
-        dogOwnerRepository.save(dogOwner);
         return dogRepository.save(dog);
     }
 }
