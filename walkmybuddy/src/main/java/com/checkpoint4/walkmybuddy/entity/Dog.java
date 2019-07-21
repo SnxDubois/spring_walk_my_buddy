@@ -26,16 +26,16 @@ public class Dog implements Serializable {
     @ManyToOne
     @JoinColumn(nullable = false)
     @JsonIgnore
-    private User user;
+    private DogOwner dogOwner;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             },
-            mappedBy = "dogsWalked")
+            mappedBy = "dogs")
     @JsonIgnore
-    private List<User> users;
+    private List<DogWalker> dogWalkers;
 
     public Dog() {
     }
@@ -64,19 +64,19 @@ public class Dog implements Serializable {
         this.type = type;
     }
 
-    public User getUser() {
-        return user;
+    public DogOwner getDogOwner() {
+        return dogOwner;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDogOwner(DogOwner dogOwner) {
+        this.dogOwner = dogOwner;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<DogWalker> getDogWalkers() {
+        return dogWalkers;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setDogWalkers(List<DogWalker> dogWalkers) {
+        this.dogWalkers = dogWalkers;
     }
 }
