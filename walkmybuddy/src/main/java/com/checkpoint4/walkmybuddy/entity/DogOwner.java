@@ -6,11 +6,10 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-public class User implements Serializable {
+public class DogOwner implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,24 +28,10 @@ public class User implements Serializable {
     @Size(min = 8)
     private String password;
 
-    private Boolean owner;
-
-    private Boolean validated;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "dogOwner")
     private Set<Dog> dogsOwned = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(name = "walks",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "dog_id")})
-    private List<Dog> dogsWalked;
-
-    public User() {
+    public DogOwner() {
     }
 
     public Long getId() {
@@ -81,35 +66,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Boolean getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Boolean owner) {
-        this.owner = owner;
-    }
-
-    public Boolean getValidated() {
-        return validated;
-    }
-
-    public void setValidated(Boolean validated) {
-        this.validated = validated;
-    }
-
     public Set<Dog> getDogsOwned() {
         return dogsOwned;
     }
 
     public void setDogsOwned(Set<Dog> dogsOwned) {
         this.dogsOwned = dogsOwned;
-    }
-
-    public List<Dog> getDogsWalked() {
-        return dogsWalked;
-    }
-
-    public void setDogsWalked(List<Dog> dogsWalked) {
-        this.dogsWalked = dogsWalked;
     }
 }
