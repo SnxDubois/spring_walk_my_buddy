@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class DogWalker implements Serializable{
+public class DogWalker implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +28,7 @@ public class DogWalker implements Serializable{
     @Size(min = 8)
     private String password;
 
+    private boolean validated;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -39,6 +40,14 @@ public class DogWalker implements Serializable{
     private Set<Dog> dogs = new HashSet<>();
 
     public DogWalker() {
+    }
+
+    public boolean isValidated() {
+        return validated;
+    }
+
+    public void setValidated(boolean validated) {
+        this.validated = validated;
     }
 
     public Long getId() {

@@ -37,7 +37,7 @@ public class DogOwnerController {
     }
 
     @PostMapping("dogOwners/{dogOwnerId}/dogWalkers/{dogWalkerId}")
-    public DogWalker validateDogWalker(@PathVariable Long dogOwnerId, @PathVariable Long dogWalkerId) {
+    public DogWalker validateDogWalkers(@PathVariable Long dogOwnerId, @PathVariable Long dogWalkerId) {
         DogOwner dogOwner = dogOwnerRepository.findById(dogOwnerId).get();
         DogWalker dogWalker = dogWalkerRepository.findById(dogWalkerId).get();
         Set<Dog> dogs = dogOwner.getDogsOwned();
