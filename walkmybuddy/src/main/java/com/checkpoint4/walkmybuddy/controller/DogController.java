@@ -28,7 +28,7 @@ public class DogController {
         return dogRepository.save(dog);
     }
 
-    @GetMapping("/dogWalkers/{dogWalkerId}/dogs/")
+    @GetMapping("/dogWalkers/{dogWalkerId}/dogs")
     public Set<Dog> getAllDogsByWalker(@PathVariable Long dogWalkerId) {
         DogWalker dogWalker = dogWalkerRepository.findById(dogWalkerId).get();
         return dogWalker.getDogs();
